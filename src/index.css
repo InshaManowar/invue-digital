@@ -1,0 +1,133 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Light mode variables */
+  --bg-color: 246, 245, 240; /* dash-beige */
+  --text-color: 23, 23, 23; /* dash-black */
+  --transition-duration: 100ms; /* Reduced from 200ms */
+  --purple: 89, 65, 247; /* dash-purple */
+}
+
+.dark {
+  /* Dark mode variables */
+  --bg-color: 23, 23, 23; /* dash-black */
+  --text-color: 246, 245, 240; /* dash-beige */
+}
+
+html {
+  scroll-behavior: auto !important; /* Disable native smooth scroll to avoid conflicts */
+}
+
+body {
+  @apply font-dash bg-dash-beige text-dash-black dark:bg-dash-black dark:text-white;
+  @apply antialiased;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+/* Simplified transitions */
+a, button {
+  transition: opacity 0.2s ease;
+}
+
+/* Hide standard cursor when using custom cursor */
+html.has-custom-cursor {
+  cursor: none !important;
+}
+
+html.has-custom-cursor a,
+html.has-custom-cursor button {
+  cursor: none !important;
+}
+
+/* Dash typography styles */
+h1, h2, h3, h4, h5, h6 {
+  @apply font-dash-display font-bold tracking-tight;
+}
+
+/* Custom Dash component styles */
+.dash-bordered {
+  @apply border border-dash-black/10 dark:border-white/10;
+}
+
+/* Animation for the ALMOST text - reduced complexity */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0) rotate(-3deg);
+  }
+  50% {
+    transform: translateY(-10px) rotate(-3deg);
+  }
+}
+
+.float-animation {
+  animation: float 6s ease-in-out infinite;
+}
+
+/* Simple fade-in for sections */
+section {
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+section.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Tilt effect for highlight */
+.highlight-tilt {
+  transform: rotate(-3deg);
+  display: inline-block;
+}
+
+/* Custom scrollbar - even lighter */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(var(--text-color), 0.1);
+  border-radius: 3px;
+}
+
+/* Basic animations */
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.animate-fade-in {
+  animation: fade-in 0.5s ease-out forwards;
+}
+
+/* Keyframes for marquee in ZigzagTextSection */
+@keyframes marquee {
+  0% { transform: translate3d(100%, -50%, 0); }
+  100% { transform: translate3d(-100%, -50%, 0); }
+}
+
+/* Line clamp utilities for better text truncation */
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.line-clamp-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
